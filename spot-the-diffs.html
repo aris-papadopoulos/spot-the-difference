@@ -72,11 +72,11 @@
   <body>
     <div class="container">
         <div id="spot1" class="diffDiv">
-            <img src="diafores1.jpg" alt="dif1" />
+            <img src="diafores1.png" alt="dif1" />
             <span class="mirror"></span>
         </div>
         <div id="spot2" class="diffDiv">
-            <img src="diafores2.jpg" alt="dif2" />
+            <img src="diafores2.png" alt="dif2" />
             <span class="mirror"></span>
         </div>
     </div>
@@ -91,18 +91,19 @@
     <script>
         var diffErrors = 0;
         function renderDiffs() {
-                    $('#spot1, #spot2').append('<span class="dcount diff no1"></span>')
-                    $('#spot1, #spot2').append('<span class="dcount diff no2"></span>')
-                    $('#spot1, #spot2').append('<span class="dcount diff no3"></span>')
+                    $('#spot1, #spot2').append('<span class="dcount diff no1" data-number="no1"></span>')
+                    $('#spot1, #spot2').append('<span class="dcount diff no2" data-number="no2"></span>')
+                    $('#spot1, #spot2').append('<span class="dcount diff no3" data-number="no3"></span>')
                 }
         function findDiffs() {
             $('#spot1, #spot2').click(function(event) {
                 
-                console.log(event.target.nodeName, ' on spot1 was clicked');
+                console.log(event.target.nodeName, ' on ', $(this).attr('id') ,' was clicked');
                 if (event.target.nodeName == 'SPAN') {
-                    console.log('event.target', event.target);
-                    $(event.target).css('background-color', 'rgba(256, 0, 0, 0.5');
-                    $(event.target).removeClass('dcount');
+                    console.log('event.target', $(event.target).data('number'));
+                    var diffNoClicked = $(event.target).data('number');
+                    $('span.'+ diffNoClicked).css('background-color', 'rgba(256, 0, 0, 0.5');
+                    $('span.'+ diffNoClicked).removeClass('dcount');
                     diffCounter();
                 }
                 else if (event.target.nodeName == 'IMG') {
