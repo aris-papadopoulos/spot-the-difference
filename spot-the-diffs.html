@@ -14,6 +14,7 @@
     }
     .container {
         margin: auto;
+        max-width: 1400px;
     }
     .diff {
         position: absolute;
@@ -137,14 +138,14 @@
               $( "span.coordinates2" ).text( "( event.clientX, event.clientY ) : " + clientCoords );
               if ($(this).is('#spot1')) {
               $(this).siblings('div').children('.mirror').css({
-                    'left': event.pageX + 'px',
-                    'top': event.pageY + 'px'
+                    'left': diffLeft1 + 'px',
+                    'top': diffTop1 + 'px'
                 });
               }
               else {
                 $(this).siblings('div').children('.mirror').css({
-                    'left': (event.pageX - 678) + 'px',
-                    'top': event.pageY + 'px'
+                    'left': diffLeft2 + 'px',
+                    'top': diffTop2 + 'px'
                 });
               
               }
