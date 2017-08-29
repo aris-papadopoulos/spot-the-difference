@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      .diffDiv {
+        margin: 0;
+        border: 1px solid #333;
+        display: inline-block;
+        position: relative;
+    }
+    .container {
+        margin: auto;
+    }
+    .diff {
+        position: absolute;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: rgba(192, 64, 0, 0.5);
+    }
+    .diff.no1 {
+        left: 332px;
+        top: 391px;
+        -webkit-clip-path: polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%);
+        clip-path: polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%);
+        width: 65px;
+        height: 36px;
+    }
+    .diff.no2 {
+        left: 473px;
+        top: 174px;
+    }
+    .diff.no3 {
+        left: 49px;
+        top: 371px;
+    }
+    .mirror {
+        width: 30px;
+        height: 30px;
+        border: 2px solid red;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%,-50%);
+    }
+    .gratz {
+        width: 400px;
+        text-align: center;
+        background-color: #11609c;
+        padding: 10px;
+        border-radius: 4px;
+        color: #fff;
+        margin: auto;
+    }
+    .gratz p {margin: 0;}
+    .close {
+        width: 30px;
+        margin: auto;
+        padding: 4px;
+        background-color: #fff;
+        color: #11609c;
+        border-radius: 4px;
+        margin-top: 6px;    
+        cursor: pointer;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div id="spot1" class="diffDiv">
+            <img src="diafores1.jpg" alt="dif1" />
+            <span class="mirror"></span>
+        </div>
+        <div id="spot2" class="diffDiv">
+            <img src="diafores2.jpg" alt="dif2" />
+            <span class="mirror"></span>
+        </div>
+    </div>
+    <div class="container">
+        <span class="coordinates"></span>
+        <span class="coordinates2"></span>
+    </div>
+    <script
+      src="http://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous"></script>
+    <script>
+        var diffErrors = 0;
+        function renderDiffs() {
+                    $('#spot1, #spot2').append('<span class="dcount diff no1"></span>')
+                    $('#spot1, #spot2').append('<span class="dcount diff no2"></span>')
+                    $('#spot1, #spot2').append('<span class="dcount diff no3"></span>')
+                }
+        function findDiffs() {
+            $('#spot1, #spot2').click(function(event) {
+                
+                console.log(event.target.nodeName, ' on spot1 was clicked');
+                if (event.target.nodeName == 'SPAN') {
+                    console.log('event.target', event.target);
+                    $(event.target).css('background-color', 'rgba(256, 0, 0, 0.5');
+                    $(event.target).removeClass('dcount');
+                    diffCounter();
+                }
+                else if (event.target.nodeName == 'IMG') {
+                    diffErrors++;
+                    console.log('Errors made: ', diffErrors);
+                }
+                
+            });
+        }
+        function mouseCoordinates() {
+            $( "div#spot1, div#spot2" ).mousemove(function( event ) {
+                console.log(this);
+              $(this).children('.mirror').hide();
+              $(this).siblings('div').children('.mirror').show();
+              var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
+              var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
+              
+                // Not yet used, get offset of element instead of page (might be needed if we change layout)
+                var offset1 = $("#spot1").offset();
+                var diffLeft1 = event.pageX - offset1.left;
+                var diffTop1 = event.pageY - offset1.top;
+                
+                var offset2 = $("#spot2").offset();
+                var diffLeft2 = event.pageX - offset2.left;
+                var diffTop2 = event.pageY - offset2.top;
+                
+                console.log('difflefttop1', diffLeft1, diffTop1, 'difflefttop2', diffLeft2, diffTop2);
+                // Not yet used, get offset of element instead of page (might be needed if we change layout)
+              
+              $( "span.coordinates" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
+              $( "span.coordinates2" ).text( "( event.clientX, event.clientY ) : " + clientCoords );
+              if ($(this).is('#spot1')) {
+              $(this).siblings('div').children('.mirror').css({
+                    'left': event.pageX + 'px',
+                    'top': event.pageY + 'px'
+                });
+              }
+              else {
+                $(this).siblings('div').children('.mirror').css({
+                    'left': (event.pageX - 678) + 'px',
+                    'top': event.pageY + 'px'
+                });
+              
+              }
+            });
+        }
+        function diffCounter() {
+            var diffCount = $('#spot1 .dcount').length;
+            console.log('Differences Count: ', diffCount);
+            if (diffCount == 0) {
+                $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + diffErrors + ' errors.</p><div class="close">OK</div></div>')
+            }
+        }
+        function clearResult() {
+            console.log('wtf');
+            
+            $(document).on('click', '.close', function() {
+                $('.gratz').remove();
+            });
+        }
+        jQuery(document).ready(function () {
+                renderDiffs();
+                findDiffs();
+                mouseCoordinates();
+                diffCounter();
+                clearResult();
+            }
+        );
+        
+    </script>
+  </body>
+</html>    
