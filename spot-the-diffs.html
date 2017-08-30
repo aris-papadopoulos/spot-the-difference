@@ -2,19 +2,25 @@
 <html>
   <head>
     <style>
+        @font-face {
+          font-family: 'DS-DIGIB';
+          src: url('DS-DIGIB.TTF');
+        }
       body {
         margin: 0px;
         padding: 0px;
+        background-color: #55a0cb;
       }
+      img {border: 1px solid #333;}
       .diffDiv {
         margin: 0;
-        border: 1px solid #333;
         display: inline-block;
         position: relative;
     }
     .container {
         margin: auto;
         max-width: 1400px;
+        text-align: center;
     }
     .diff {
         position: absolute;
@@ -68,9 +74,19 @@
         margin-top: 6px;    
         cursor: pointer;
     }
+    #timer {
+    font-family: 'DS-DIGIB';
+    font-size: 24px;
+    text-align: center;
+    }
     </style>
   </head>
   <body>
+    <div class="container">
+        <div id="timer"></div>
+        <div id="score">&nbsp;</div>
+    </div>
+    
     <div class="container">
         <div id="spot1" class="diffDiv">
             <img src="diafores1.jpg" alt="dif1" />
@@ -106,10 +122,12 @@
                     $('span.'+ diffNoClicked).css('background-color', 'rgba(256, 0, 0, 0.5');
                     $('span.'+ diffNoClicked).removeClass('dcount');
                     diffCounter();
+                    $('#score').prepend('✓');
                 }
                 else if (event.target.nodeName == 'IMG') {
                     diffErrors++;
                     console.log('Errors made: ', diffErrors);
+                    $('#score').prepend('×');
                 }
                 
             });
@@ -159,12 +177,41 @@
             }
         }
         function clearResult() {
-            console.log('wtf');
-            
-            $(document).on('click', '.close', function() {
-                $('.gratz').remove();
-            });
+                    console.log('wtf');
+                    
+                    $(document).on('click', '.close', function() {
+                        $('.gratz').remove();
+                    });
+                }
+        
+        // Countdown timer
+        var mins_count=2;
+        var secs_count=0;
+        var count = (mins_count * 60) + secs_count;
+        
+        var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+        function timer()
+        {
+          count=count-1;
+          if (count < 0)
+          {
+             clearInterval(counter);
+             //counter ended, do something here
+             alert("Time is Out");
+             
+             return;
+          }
+            r_mins = Math.floor(count / 60);
+            r_secs = count % 60;
+            var f_mins = (r_mins < 10) ? ("0" + r_mins) : r_mins;
+            var f_secs = (r_secs < 10) ? ("0" + r_secs) : r_secs;
+          //Do code for showing the number of seconds here
+          //document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
+          document.getElementById("timer").innerHTML= f_mins + ":" + f_secs; // watch for spelling
         }
+        // End of Countdown timer
+        
         jQuery(document).ready(function () {
                 renderDiffs();
                 findDiffs();
