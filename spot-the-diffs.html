@@ -9,9 +9,13 @@
       body {
         margin: 0px;
         padding: 0px;
-        background-color: #55a0cb;
+        <!-- background-color: #55a0cb; -->
       }
-      img {border: 1px solid #333;}
+      header img {
+        max-width: 100%;
+        margin: 24px;
+      }
+      .diffContainer img {border: 1px solid #333;}
       .diffDiv {
         margin: 0;
         display: inline-block;
@@ -75,19 +79,82 @@
         cursor: pointer;
     }
     #timer {
-    font-family: 'DS-DIGIB';
-    font-size: 24px;
-    text-align: center;
+        font-family: 'DS-DIGIB';
+        font-size: 24px;
+        text-align: center;
+        background-color: #CD2626;
+        display: inline-block;
+        padding: 4px 10px;
+        margin-top: 20px;
+        border-radius: 6px;
+        color: #fff;
+        width: 54px;
+        height: 24px;
     }
+    
+    .btn {
+        border: none;
+        font-family: monospace;
+        font-size: large;
+        color: inherit;
+        background: none;
+        cursor: pointer;
+        padding: 16px 48px;
+        display: inline-block;
+        margin: 15px 30px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        outline: none;
+        position: relative;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    .btn:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    .btn-2g {
+        border-radius: 40px;
+    }
+    .btn-2 {
+        background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);
+        color: #fff;
+        box-shadow: 0 6px #1e5799;
+        -webkit-transition: none;
+        -moz-transition: none;
+        transition: none;
+    }
+    .btn-2g:hover {
+        box-shadow: 0 4px #1e5799;
+        top: 2px;
+    }
+    .btn-2g:active {
+        box-shadow: 0 0 #1e5799;
+        top: 6px;
+    }
+    .btnContainer {margin: auto; width: 254px;}
+        
     </style>
   </head>
   <body>
+    <header>
+        <img src="spot.png" alt="spot the difference logo"/>
+        <div class="btnContainer">
+            <button class="btn btn-2 btn-2g">Start Game</button>
+        </div>
+    </header>
     <div class="container">
         <div id="timer"></div>
         <div id="score">&nbsp;</div>
     </div>
     
-    <div class="container">
+    <div class="container diffContainer">
         <div id="spot1" class="diffDiv">
             <img src="diafores1.jpg" alt="dif1" />
             <span class="mirror"></span>
@@ -218,6 +285,100 @@
                 mouseCoordinates();
                 diffCounter();
                 clearResult();
+                
+                var json = {
+                    "diff": [
+                        {
+                            "id":"1",
+                            "a-src":"./img/spot-the-difference-001a.jpg",
+                            "b-src":"./img/spot-the-difference-001b.jpg",
+                            "css":  [
+                                {
+                                "left":"332",
+                                "top":"391", 
+                                "clip_path":"polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%)",
+                                "width":"65",
+                                "height":"36"
+                                },
+                                {
+                                "left":"473",
+                                "top":"174"
+                                },
+                                {
+                                "left":"49",
+                                "top":"371"
+                                },
+                                {
+                                "left":"332",
+                                "top":"533"
+                                }
+                            ]
+                        },
+                        {
+                            "id":"2",
+                            "a-src":"./img/spot-the-difference-002a.jpg",
+                            "b-src":"./img/spot-the-difference-002b.jpg",
+                            "css": [
+                                {
+                                "left":"332",
+                                "top":"391", 
+                                "clip_path":"polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%)",
+                                "width":"65",
+                                "height":"36"
+                                },
+                                {
+                                "left":"473",
+                                "top":"174"
+                                },
+                                {
+                                "left":"49",
+                                "top":"371", 
+                                "clip_path":"polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%)",
+                                "width":"65",
+                                "height":"36"
+                                },
+                                {
+                                "left":"332",
+                                "top":"533", 
+                                "clip_path":"polygon(13% 3%, 93% 36%, 92% 89%, 11% 30%)",
+                                "width":"65",
+                                "height":"36"
+                                }
+                            ]
+                        }
+                    ]
+                };
+                function getRandomInt(min, max) {
+                  min = 0;
+                  max = json.diff.length;
+                  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+                }
+                console.log('json.diff.length', json.diff.length, getRandomInt());
+                var i = getRandomInt();
+                var generateCSS = '';
+                function generateCss(i) { 
+                    
+                    for (j=0; j<4; j++) {
+                        generateCSS += '.diff.no' + (j+1) + ' {left: ' + json.diff[0].css[j].left + 'px; top: ' + json.diff[1].css[j].top + 'px;';
+                        if (json.diff[i].css[j].clip_path != undefined) {
+                            generateCSS += '-webkit-clip-path: ' + json.diff[0].css[j].clip_path + ';'
+                            generateCSS += 'clip-path: ' + json.diff[0].css[j].clip_path + ';'
+                        }
+                        if (json.diff[i].css[j].width != undefined) {
+                            generateCSS += 'width: ' + json.diff[0].css[j].width + 'px;'
+                        }
+                        if (json.diff[i].css[j].height != undefined) {
+                            generateCSS += 'height: ' + json.diff[0].css[j].height + 'px;'
+                        }
+                        generateCSS += '}';
+                        }
+                }
+                
+                console.log('generateCSS', generateCSS);
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = generateCSS;
+                document.getElementsByTagName('head')[0].appendChild(style);
             }
         );
         
