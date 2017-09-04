@@ -290,8 +290,8 @@
                     "diff": [
                         {
                             "id":"1",
-                            "a-src":"./img/spot-the-difference-001a.jpg",
-                            "b-src":"./img/spot-the-difference-001b.jpg",
+                            "a_src":"diafores1.jpg",
+                            "b_src":"diafores2.jpg",
                             "css":  [
                                 {
                                 "left":"332",
@@ -316,8 +316,8 @@
                         },
                         {
                             "id":"2",
-                            "a-src":"./img/spot-the-difference-002a.jpg",
-                            "b-src":"./img/spot-the-difference-002b.jpg",
+                            "a_src":"./img/spot-the-difference-002a.jpg",
+                            "b_src":"./img/spot-the-difference-002b.jpg",
                             "css": [
                                 {
                                 "left":"332",
@@ -353,9 +353,10 @@
                   max = json.diff.length;
                   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
                 }
-                console.log('json.diff.length', json.diff.length, getRandomInt());
                 var i = getRandomInt();
+                console.log('json.diff.length', json.diff.length, i);
                 var generateCSS = '';
+                
                 function generateCss(i) { 
                     
                     for (j=0; j<4; j++) {
@@ -374,6 +375,13 @@
                         }
                 }
                 
+                function loadImages(i) {
+                    console.log('i', i);
+                    $('#spot1 img').attr('src', json.diff[i].a_src);
+                    $('#spot2 img').attr('src', json.diff[i].b_src);
+                }
+                generateCss(i);
+                loadImages(i);
                 console.log('generateCSS', generateCSS);
                 var style = document.createElement('style');
                 style.type = 'text/css';
