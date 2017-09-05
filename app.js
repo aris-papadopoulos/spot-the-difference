@@ -1,4 +1,4 @@
-var diffErrors = 0;
+
 var generateCSS = '';
 function renderDiffs() {
             $('#spot1, #spot2').append('<span class="dcount diff no1" data-number="no1"></span>');
@@ -16,12 +16,16 @@ function findDiffs() {
             $('span.'+ diffNoClicked).css('background-color', 'rgba(256, 0, 0, 0.5');
             $('span.'+ diffNoClicked).removeClass('dcount');
             diffCounter();
-            $('#score').prepend('✓');
+            prevScore = score;
+            score += 20;
+            updateScore(prevScore);
         }
         else if (event.target.nodeName == 'IMG') {
-            diffErrors++;
-            console.log('Errors made: ', diffErrors);
-            $('#score').prepend('×');
+            prevScore = score;
+            score -= 30;
+            lives--;
+            console.log('Lives left: ', lives);
+            updateScore(prevScore);
         }
         
     });
@@ -67,7 +71,7 @@ function diffCounter() {
     var diffCount = $('#spot1 .dcount').length;
     console.log('Differences Count: ', diffCount);
     if (diffCount == 0) {
-        $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + diffErrors + ' errors.</p><div class="close">OK</div></div>')
+        $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + lives + ' errors.</p><div class="close">OK</div></div>')
     }
 }
 function clearResult() {
@@ -140,18 +144,32 @@ function renderCSS() {
     document.getElementsByTagName('head')[0].appendChild(style);
 }    // Render the coordinates CSS
 
+var lives = 4;
+var score = 0;
+
 function startGame () {
     imageHistory = []; // Reset history of images loaded in previous session
     score = 0;
+    updateScore();
     newRound();
 }
 
+// Handicaps
+var flagGetTime = 1;
+var flagGetCrosshair = 1;
+var flagGetAnotherImg = 1;
+
 function newRound () {
-    while (imageHasLoaded(randomImg) == true) {
+    while (imageWasPlayed(randomImg) == true) {
         var randomImg = getRandomInt();
         console.log('randomImg', randomImg);
     }
 }
+
+// Game rounds counters
+var roundNumber = 0;
+var gameRounds = 5;
+
 function endRound() {
     if (roundNumber == gameRounds) {
         endGame();
@@ -160,7 +178,7 @@ function endRound() {
 function endGame() {
     
 }
-function imageHasLoaded (randomImg) {
+function imageWasPlayed (randomImg) {
     
     for (j=0; j<imageHistory.length; j++) {
         if (randomImg === imageHistory[j]) {
@@ -169,6 +187,24 @@ function imageHasLoaded (randomImg) {
     }
     
 }
+
+function updateScore(ps) {
+    $('#score').text(score);
+    
+    $('#score').each(function () {
+        $(this).prop('Counter',ps).animate({
+            Counter: score
+        }, {
+            duration: 500,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+}
+
+
 
 var json = {
     "diff": [
@@ -245,6 +281,7 @@ jQuery(document).ready(function () {
         
         console.log('json.diff.length', json.diff.length, i);
         
+        updateScore();
         
         generateCss(i);
         loadImages(i);
