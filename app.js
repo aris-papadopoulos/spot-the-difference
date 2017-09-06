@@ -83,10 +83,9 @@ function clearResult() {
 }
 
 // Countdown timer
-var mins_count=2;
-var secs_count=0;
-var count = (mins_count * 60) + secs_count;
-var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    var mins_count=2;
+    var secs_count=0;
+    var count = (mins_count * 60) + secs_count;
 
 function timer()
 {
@@ -147,10 +146,31 @@ function renderCSS() {
 var lives = 4;
 var score = 0;
 
+var gameInProgress = false;
+
+function startGameBtn () {
+    $('#startGame.btn').click(function() {
+        if (!gameInProgress) {
+            startGame();
+            gameInProgress = true;
+        }
+        else {
+            console.log('a game is already in progress. do you wish to start a new one?');
+        }
+    });
+}
+
 function startGame () {
     imageHistory = []; // Reset history of images loaded in previous session
     score = 0;
     updateScore();
+    
+    renderDiffs();
+    findDiffs();
+    mouseCoordinates();
+    diffCounter();
+    clearResult();
+        
     newRound();
 }
 
@@ -159,11 +179,27 @@ var flagGetTime = 1;
 var flagGetCrosshair = 1;
 var flagGetAnotherImg = 1;
 
-function newRound () {
+function newRound (j) {
+    
+    roundNumber++;
+    console.log('round ', roundNumber);
+    
+    var i = getRandomInt();
+    generateCss(i);
+    loadImages(i);
+    renderCSS();
+    console.log('generateCSS', generateCSS);
+    
     while (imageWasPlayed(randomImg) == true) {
         var randomImg = getRandomInt();
         console.log('randomImg', randomImg);
     }
+    
+    // Countdown timer
+    var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+    
+    
+    
 }
 
 // Game rounds counters
@@ -176,7 +212,7 @@ function endRound() {
     }
 }
 function endGame() {
-    
+    gameInProgress = false;
 }
 function imageWasPlayed (randomImg) {
     
@@ -203,7 +239,6 @@ function updateScore(ps) {
         });
     });
 }
-
 
 
 var json = {
@@ -236,8 +271,8 @@ var json = {
         },
         {
             "id":"2",
-            "a_src":"./img/spot-the-difference-002a.jpg",
-            "b_src":"./img/spot-the-difference-002b.jpg",
+            "a_src":"diafores1.jpg",
+            "b_src":"diafores2.jpg",
             "css": [
                 {
                 "left":"332",
@@ -271,22 +306,26 @@ var json = {
     
 jQuery(document).ready(function () {
     
-        renderDiffs();
-        findDiffs();
-        mouseCoordinates();
-        diffCounter();
-        clearResult();
+        // renderDiffs();
+        // findDiffs();
+        // mouseCoordinates();
+        // diffCounter();
+        // clearResult();
         
-        var i = getRandomInt();
+        startGameBtn();
         
-        console.log('json.diff.length', json.diff.length, i);
+        
+        
         
         updateScore();
         
-        generateCss(i);
-        loadImages(i);
-        renderCSS();
-        console.log('generateCSS', generateCSS);
+        // var i = getRandomInt();
+        
+        // console.log('json.diff.length', json.diff.length, i);
+        // generateCss(i);
+        // loadImages(i);
+        // renderCSS();
+        // console.log('generateCSS', generateCSS);
         
     }
 );
