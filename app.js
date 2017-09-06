@@ -52,6 +52,7 @@ function mouseCoordinates() {
       
       $( "span.coordinates" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
       $( "span.coordinates2" ).text( "( event.clientX, event.clientY ) : " + clientCoords );
+      $('.mirror').removeClass('hide'); // reveals mirror crosshair
       if ($(this).is('#spot1')) {
       $(this).siblings('div').children('.mirror').css({
             'left': diffLeft1 + 'px',
@@ -94,6 +95,7 @@ function timer()
   {
      clearInterval(counter);
      //counter ended, do something here
+     $('.mirror').addClass('hide');
      alert("Time is Out");
      
      return;

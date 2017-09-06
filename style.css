@@ -22,6 +22,7 @@ header img {
     max-width: 1400px;
     text-align: center;
 }
+.hide {display: none;}
 .diff {
     position: absolute;
     cursor: pointer;
