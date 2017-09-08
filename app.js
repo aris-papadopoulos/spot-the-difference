@@ -204,10 +204,12 @@ function newRound (j) {
     // Countdown timer
     timeCounter=setInterval(timer, 1000); // 1000 will  run it every 1 second - need to be global var
     toggleScore();
+    // toggleOverlay();
 }
 
 function endRound() {
     toggleScore();
+    // toggleOverlay();
     if (roundNumber == gameRounds) {
         endGame();
     }
@@ -216,6 +218,7 @@ function endRound() {
 function endGame() {
     gameInProgress = false;
     toggleScore();
+    // toggleOverlay();
 }
 
 function imageWasPlayed (randomImg) {    
@@ -233,6 +236,13 @@ function toggleScore() {
     scoreEnabled ? $('.diffDiv').css('pointer-events', 'initial') : $('.diffDiv').css('pointer-events', 'none');
     console.log('scoreEnabled', scoreEnabled);
 }
+
+var showOverlay = false;
+
+// function toggleOverlay() {
+    // showOverlay ? $('.overlay').removeClass('hidden') : $('.overlay').addClass('hidden');
+    // showOverlay = !showOverlay;
+// }
 
 function updateScore(ps) {
     $('#score').text(score);

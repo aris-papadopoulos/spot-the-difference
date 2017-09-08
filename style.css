@@ -33,6 +33,21 @@ header img {
     border-radius: 50%;
     background-color: rgba(192, 64, 0, 0.5);
 }
+.overlay.hidden {
+  opacity: 0;
+  z-index: -1;
+}
+.overlay {
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  transition: opacity 400ms;
+  z-index: 999;
+}
 /* .diff.no1 { */
     /* left: 332px; */
     /* top: 391px; */
