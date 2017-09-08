@@ -5,13 +5,32 @@
   </head>
   <body>
     <header>
-        <img src="spot.png" alt="spot the difference logo"/>
-        <div class="btnContainer">
-            <button id="startGame" class="btn btn-2 btn-2g">Start Game</button>
-        </div>
         <div class="container">
-            <div id="timer"></div>
-            <div id="score">&nbsp;</div>
+            <div class="logo"><img src="spot.png" alt="spot the difference logo"/></div>
+            <div class="btnContainer">
+                <button id="startGame" class="btn btn-2 btn-2g">Start Game</button>
+            </div>
+        </div>
+        
+        <div class="statsBar">
+            <div id="lives">
+                <span class="lives-icon"><img src="icons/lives.png" alt="lives"/></span>
+            </div>
+            <div id="help">
+                <span class="detonate-icon"><img src="icons/detonate.png" alt="detonate"/></span>
+                <span class="potion-icon"><img src="icons/potion.png" alt="potion"/></span>
+            </div>
+            <div id="time-left">
+                <span class="time-icon"><img src="icons/time.png" alt="timer"/></span>
+                <span id="timer"></span>
+            </div>
+            <div id="score">
+                <span class="score-icon"><img src="icons/score.png" alt="score"/></span>
+                <span id="score-count">&nbsp;</span>
+            </div>
+            <div id="high-score">
+                <span class="highscore-icon"><img src="icons/high-score.png" alt="high-score"/></span>
+            </div>
         </div>
     </header>
     

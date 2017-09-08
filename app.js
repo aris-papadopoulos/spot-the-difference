@@ -88,8 +88,8 @@ function clearResult() {
 }
 
 // Countdown timer
-var mins_count=0;
-var secs_count=5;
+var mins_count=2;
+var secs_count=0;
 var count = (mins_count * 60) + secs_count;
 var timeCounter;
 
@@ -245,9 +245,9 @@ var showOverlay = false;
 // }
 
 function updateScore(ps) {
-    $('#score').text(score);
+    $('#score-count').text(score);
     
-    $('#score').each(function () {
+    $('#score-count').each(function () {
         $(this).prop('Counter',ps).animate({
             Counter: score
         }, {
