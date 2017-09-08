@@ -8,8 +8,10 @@ body {
     <!-- background-color: #55a0cb; -->
 }
 header img {
-    max-width: 100%;
-    margin: 24px;
+    display: block;
+    width: 90%;
+    max-width: 1200px;
+    margin: 24px auto;
 }
 .diffContainer img {border: 1px solid #333;}
 .diffDiv {

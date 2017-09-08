@@ -1,11 +1,13 @@
 
 var generateCSS = '';
+
 function renderDiffs() {
             $('#spot1, #spot2').append('<span class="dcount diff no1" data-number="no1"></span>');
             $('#spot1, #spot2').append('<span class="dcount diff no2" data-number="no2"></span>');
             $('#spot1, #spot2').append('<span class="dcount diff no3" data-number="no3"></span>');
             $('#spot1, #spot2').append('<span class="dcount diff no4" data-number="no4"></span>');
         }
+        
 function findDiffs() {
     $('#spot1, #spot2').click(function(event) {
         
@@ -30,9 +32,10 @@ function findDiffs() {
         
     });
 }
+
 function mouseCoordinates() {
     $( "div#spot1, div#spot2" ).mousemove(function( event ) {
-        console.log(this);
+        // console.log(this);
       $(this).children('.mirror').hide();
       $(this).siblings('div').children('.mirror').show();
       var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
@@ -47,7 +50,7 @@ function mouseCoordinates() {
         var diffLeft2 = event.pageX - offset2.left;
         var diffTop2 = event.pageY - offset2.top;
         
-        console.log('difflefttop1', diffLeft1, diffTop1, 'difflefttop2', diffLeft2, diffTop2);
+        // console.log('difflefttop1', diffLeft1, diffTop1, 'difflefttop2', diffLeft2, diffTop2);
         // Not yet used, get offset of element instead of page (might be needed if we change layout)
       
       $( "span.coordinates" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
@@ -68,6 +71,7 @@ function mouseCoordinates() {
       }
     });
 }
+
 function diffCounter() {
     var diffCount = $('#spot1 .dcount').length;
     console.log('Differences Count: ', diffCount);
@@ -75,38 +79,38 @@ function diffCounter() {
         $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + lives + ' errors.</p><div class="close">OK</div></div>')
     }
 }
+
 function clearResult() {
     console.log('wtf');
-    
     $(document).on('click', '.close', function() {
         $('.gratz').remove();
     });
 }
 
 // Countdown timer
-    var mins_count=2;
-    var secs_count=0;
-    var count = (mins_count * 60) + secs_count;
+var mins_count=0;
+var secs_count=5;
+var count = (mins_count * 60) + secs_count;
+var timeCounter;
 
-function timer()
-{
+function timer() {
   count=count-1;
   if (count < 0)
   {
-     clearInterval(counter);
-     //counter ended, do something here
-     $('.mirror').addClass('hide');
-     alert("Time is Out");
-     
-     return;
+    endGame();
+    //counter ended, do something here
+    $('.mirror').addClass('hide');
+    clearInterval(timeCounter);
+    alert("Time is Out");
+    return;
   }
     r_mins = Math.floor(count / 60);
     r_secs = count % 60;
     var f_mins = (r_mins < 10) ? ("0" + r_mins) : r_mins;
     var f_secs = (r_secs < 10) ? ("0" + r_secs) : r_secs;
-  //Do code for showing the number of seconds here
-  //document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
-  document.getElementById("timer").innerHTML= f_mins + ":" + f_secs; // watch for spelling
+    //Do code for showing the number of seconds here
+    //document.getElementById("timer").innerHTML=count + " secs"; // watch for spelling
+    document.getElementById("timer").innerHTML= f_mins + ":" + f_secs; // watch for spelling
 } // End of Countdown timer
 
 function getRandomInt(min, max) {
@@ -147,7 +151,6 @@ function renderCSS() {
 
 var lives = 4;
 var score = 0;
-
 var gameInProgress = false;
 
 function startGameBtn () {
@@ -181,11 +184,13 @@ var flagGetTime = 1;
 var flagGetCrosshair = 1;
 var flagGetAnotherImg = 1;
 
+// Game rounds counters
+var roundNumber = 0;
+var gameRounds = 5;
+
 function newRound (j) {
-    
     roundNumber++;
     console.log('round ', roundNumber);
-    
     var i = getRandomInt();
     generateCss(i);
     loadImages(i);
@@ -196,34 +201,37 @@ function newRound (j) {
         var randomImg = getRandomInt();
         console.log('randomImg', randomImg);
     }
-    
     // Countdown timer
-    var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-    
-    
-    
+    timeCounter=setInterval(timer, 1000); // 1000 will  run it every 1 second - need to be global var
+    toggleScore();
 }
 
-// Game rounds counters
-var roundNumber = 0;
-var gameRounds = 5;
-
 function endRound() {
+    toggleScore();
     if (roundNumber == gameRounds) {
         endGame();
     }
 }
+
 function endGame() {
     gameInProgress = false;
+    toggleScore();
 }
-function imageWasPlayed (randomImg) {
-    
+
+function imageWasPlayed (randomImg) {    
     for (j=0; j<imageHistory.length; j++) {
         if (randomImg === imageHistory[j]) {
             return true;
         }
     }
-    
+}
+
+var scoreEnabled = false;
+
+function toggleScore() {
+    scoreEnabled = !scoreEnabled;
+    scoreEnabled ? $('.diffDiv').css('pointer-events', 'initial') : $('.diffDiv').css('pointer-events', 'none');
+    console.log('scoreEnabled', scoreEnabled);
 }
 
 function updateScore(ps) {
