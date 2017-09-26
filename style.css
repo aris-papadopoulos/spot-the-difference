@@ -85,6 +85,13 @@ header .logo img {
     position: absolute;
     transform: translate(-50%,-50%);
 }
+.mirror > span {position: absolute; border: 1px solid red;}
+.mirror > span:nth-child(odd) {width: 6px;}
+.mirror > span:nth-child(even) {height: 6px;}
+.mirror > span:nth-of-type(1) {transform: translate(-250%, 700%)}
+.mirror > span:nth-of-type(2) {transform: translate(-50%, 330%)}
+.mirror > span:nth-of-type(3) {transform: translate(150%, 700%);}
+.mirror > span:nth-of-type(4) {transform: translate(-50%, -60%)}
 .gratz {
     width: 400px;
     text-align: center;
