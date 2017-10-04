@@ -14,16 +14,16 @@ header .logo img {
     margin: 24px auto;
 }
 .diffContainer img {border: 1px solid #333;}
-.statsBar {
+#statsBar {
     width: 100%;
     height: 46px;
     margin: 20px auto;
 }
-.statsBar > div {
+#statsBar > div {
     width: 20%;
     float: left;
 }
-.time-icon img, .lives-icon img, .score-icon img, .highscore-icon img, .detonate-icon img, .potion-icon img {
+#statsBar > div img {
     width: 36px;
     float: left;
 }
