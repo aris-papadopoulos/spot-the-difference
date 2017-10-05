@@ -33,7 +33,7 @@ function findDiffs() {
     });
 }
 
-function mouseCoordinates() {
+function mouseTarget() {
     $( "div#spot1, div#spot2" ).mousemove(function( event ) {
         // console.log(this);
       $(this).children('.mirror').hide();
@@ -172,7 +172,6 @@ function startGame () {
     
     renderDiffs();
     findDiffs();
-    mouseCoordinates();
     diffCounter();
     clearResult();
         
@@ -262,7 +261,7 @@ function updateScore(ps) {
 
 function detonateLevel() {
     $('.next-icon').on('click', function(){
-        
+        console.log('detonate');
         $('html').addClass('detonate');        
         
         setTimeout(function(){ 
@@ -273,7 +272,7 @@ function detonateLevel() {
 
 function extraTime() {
     $('.extra-time-icon').on('click', function() {
-        
+        console.log('extra-time');
         extra_time = "<span id='extra-time'>+30</span>";
         
         $('#time-left').append(extra_time);
@@ -285,6 +284,15 @@ function extraTime() {
             $('#extra-time').remove();
         }, 2400);
         
+    });
+    
+}
+
+function viewTarget() {
+    
+    $('.target-icon').on('click', function() {
+        console.log('target');
+        mouseTarget();
     });
     
 }
@@ -356,7 +364,6 @@ jQuery(document).ready(function () {
     
         // renderDiffs();
         // findDiffs();
-        // mouseCoordinates();
         // diffCounter();
         // clearResult();
         
@@ -364,7 +371,7 @@ jQuery(document).ready(function () {
         
         detonateLevel();
         extraTime();
-        
+        viewTarget();
         
         updateScore();
         

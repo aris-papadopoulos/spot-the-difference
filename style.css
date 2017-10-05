@@ -173,6 +173,10 @@ header .logo img {
 }
 .btnContainer {margin: auto; width: 254px;}
 
+#help > span {
+    display: inline-block;
+}
+
 /* Detonate Effect */
 html.detonate {
     position: absolute;
