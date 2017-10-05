@@ -260,6 +260,16 @@ function updateScore(ps) {
     });
 }
 
+function detonateLevel() {
+    $('.next-icon').on('click', function(){
+        
+        $('html').addClass('detonate');        
+        
+        setTimeout(function(){ 
+            $('html').removeClass('detonate');
+        }, 1500);
+    });
+}
 
 var json = {
     "diff": [
@@ -334,7 +344,7 @@ jQuery(document).ready(function () {
         
         startGameBtn();
         
-        
+        detonateLevel();
         
         
         updateScore();
