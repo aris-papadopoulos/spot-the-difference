@@ -178,8 +178,12 @@ header .logo img {
 }
 
 /* Detonate Effect */
-html.detonate {
+body.detonate {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     animation: jello 1.5s 1;
 }
 @keyframes jello {

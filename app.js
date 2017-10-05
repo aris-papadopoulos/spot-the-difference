@@ -262,10 +262,10 @@ function updateScore(ps) {
 function detonateLevel() {
     $('.next-icon').on('click', function(){
         console.log('detonate');
-        $('html').addClass('detonate');        
+        $('body').addClass('detonate');        
         
         setTimeout(function(){ 
-            $('html').removeClass('detonate');
+            $('body').removeClass('detonate');
         }, 1500);
     });
 }
