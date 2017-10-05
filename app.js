@@ -271,6 +271,24 @@ function detonateLevel() {
     });
 }
 
+function extraTime() {
+    $('.extra-time-icon').on('click', function() {
+        
+        extra_time = "<span id='extra-time'>+30</span>";
+        
+        $('#time-left').append(extra_time);
+        setTimeout(function(){ 
+            $('#extra-time').addClass('zoomOutUp');
+        }, 200);
+        
+        setTimeout(function(){ 
+            $('#extra-time').remove();
+        }, 2400);
+        
+    });
+    
+}
+
 var json = {
     "diff": [
         {
@@ -345,6 +363,7 @@ jQuery(document).ready(function () {
         startGameBtn();
         
         detonateLevel();
+        extraTime();
         
         
         updateScore();
