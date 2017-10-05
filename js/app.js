@@ -301,8 +301,8 @@ var json = {
     "diff": [
         {
             "id":"1",
-            "a_src":"diafores1.jpg",
-            "b_src":"diafores2.jpg",
+            "a_src":"./images/diafores1.jpg",
+            "b_src":"./images/diafores2.jpg",
             "css":  [
                 {
                 "left":"332",
@@ -327,8 +327,8 @@ var json = {
         },
         {
             "id":"2",
-            "a_src":"diafores1.jpg",
-            "b_src":"diafores2.jpg",
+            "a_src":"./images/diafores1.jpg",
+            "b_src":"./images/diafores2.jpg",
             "css": [
                 {
                 "left":"332",
