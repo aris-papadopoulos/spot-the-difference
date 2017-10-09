@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <link rel="stylesheet" href="css/fontello.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -14,23 +15,25 @@
         
         <div id="statsBar">
             <div id="lives">
-                <span class="lives-icon" data-balloon="Lives left" data-balloon-pos="up"><img src="icons/lives.png" alt="lives" /></span>
+                <span class="lives-icon" data-balloon="Lives left" data-balloon-pos="up"><i class="icon-heart-1"></i></span>
+                <span id="lives">x 2</span>
             </div>
             <div id="help">
-                <span class="next-icon" data-balloon="Hate this image? Detonate it!" data-balloon-pos="up"><img src="icons/next.png" alt="detonate" /></span>
-                <span class="target-icon" data-balloon="Need some help on focusing?" data-balloon-pos="up"><img src="icons/target.png" alt="target" /></span>
-                <span class="extra-time-icon" data-balloon="Get some extra time!" data-balloon-pos="up"><img src="icons/hourglass.png" alt="hourglass" /></span>
+                <span class="next-icon" data-balloon="Hate this image? Detonate it!" data-balloon-pos="up"><i class="icon-bomb"></i></span>
+                <span class="target-icon" data-balloon="Need some help on focusing?" data-balloon-pos="up"><i class="icon-target"></i></span>
+                <span class="extra-time-icon" data-balloon="Get some extra time!" data-balloon-pos="up"><i class="icon-hourglass"></i></span>
             </div>
             <div id="time-left">
-                <span class="time-icon" data-balloon="Time left" data-balloon-pos="up"><img src="icons/time.png" alt="timer" /></span>
-                <span id="timer"></span>
+                <span class="time-icon" data-balloon="Time left" data-balloon-pos="up"></span>
+                <span id="timer">00:00</span>
             </div>
             <div id="score">
-                <span class="score-icon" data-balloon="Score" data-balloon-pos="up"><img src="icons/score.png" alt="score" /></span>
-                <span id="score-count">&nbsp;</span>
+                <span class="score-icon" data-balloon="Score" data-balloon-pos="up"><i class="icon-star"></i></span>
+                <span id="score-count">0</span>
             </div>
             <div id="high-score">
-                <span class="highscore-icon" data-balloon="High-score" data-balloon-pos="up"><img src="icons/high-score.png" alt="high-score" /></span>
+                <span class="highscore-icon" data-balloon="High-score" data-balloon-pos="up"><i class="icon-trophy"></i></span>
+                <span id="high-score-count">0</span>
             </div>
         </div>
     </header>

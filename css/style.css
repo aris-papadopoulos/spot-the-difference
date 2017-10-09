@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'DS-DIGIB';
-    src: url('../fonts/DS-DIGIB.TTF');
+    src: url('../font/DS-DIGIB.TTF');
 }
 body {
     margin: 0px;
@@ -22,6 +22,7 @@ header .logo img {
 #statsBar > div {
     width: 20%;
     float: left;
+    text-align: center;
 }
 #statsBar > div img {
     width: 36px;
@@ -112,14 +113,13 @@ header .logo img {
     margin-top: 6px;    
     cursor: pointer;
 }
-#timer, #score-count, #high-score {
+#timer {
     font-family: 'DS-DIGIB';
     font-size: 32px;
     text-align: center;
     display: inline-block;
     border-radius: 6px;
     color: #CD2626;
-    width: 54px;
     height: 32px;
     line-height: 32px;
 }
@@ -277,4 +277,16 @@ button[data-balloon] {
     -webkit-transform: translate(-50%,0);
     -ms-transform: translate(-50%,0);
     transform: translate(-50%,0);
+}
+
+
+/* MEDIA QUERIES */ 
+@media screen and (max-width: 993px) {
+
+    [class^="icon-"]:before, [class*=" icon-"]:before {
+        width: 32px;
+        line-height: 32px;
+        font-size: 20px;
+    }
+
 }
