@@ -223,3 +223,59 @@ body.detonate {
   }
 }
 
+/* Balloon.css tooltip */
+
+button[data-balloon] {
+    /* overflow: visible; */
+}
+[data-balloon] {
+    position: relative;
+}
+[data-balloon]:after, [data-balloon]:before {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all .18s ease-out .18s;
+    transition: all .18s ease-out .18s;
+    bottom: 100%;
+    left: 50%;
+    position: absolute;
+    z-index: 10;
+    -webkit-transform: translate(-50%,10px);
+    -ms-transform: translate(-50%,10px);
+    transform: translate(-50%,10px);
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    transform-origin: top;
+}
+[data-balloon]:before {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjEycHgiPjxwYXRoIGZpbGw9InJnYmEoMTcsIDE3LCAxNywgMC45KSIgdHJhbnNmb3JtPSJyb3RhdGUoMCkiIGQ9Ik0yLjY1OCwwLjAwMCBDLTEzLjYxNSwwLjAwMCA1MC45MzgsMC4wMDAgMzQuNjYyLDAuMDAwIEMyOC42NjIsMC4wMDAgMjMuMDM1LDEyLjAwMiAxOC42NjAsMTIuMDAyIEMxNC4yODUsMTIuMDAyIDguNTk0LDAuMDAwIDIuNjU4LDAuMDAwIFoiLz48L3N2Zz4=);    background-size: 100% auto;
+    height: 6px;
+    width: 18px;
+    content: "";
+    margin-bottom: 5px;
+}
+[data-balloon]:after {
+    background: rgba(17,17,17,.9);
+    border-radius: 4px;
+    color: #fff;
+    content: attr(data-balloon);
+    font-size: 12px;
+    padding: .5em 1em;
+    white-space: nowrap;
+    margin-bottom: 11px;
+}
+[data-balloon]:hover:after, [data-balloon]:hover:before, [data-balloon][data-balloon-visible]:after, [data-balloon][data-balloon-visible]:before {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    -khtml-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+}
