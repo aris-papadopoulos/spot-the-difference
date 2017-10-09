@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'DS-DIGIB';
-    src: url('DS-DIGIB.TTF');
+    src: url('../fonts/DS-DIGIB.TTF');
 }
 body {
     margin: 0px;
@@ -117,7 +117,6 @@ header .logo img {
     font-size: 32px;
     text-align: center;
     display: inline-block;
-    padding: 4px 10px;
     border-radius: 6px;
     color: #CD2626;
     width: 54px;
@@ -173,7 +172,7 @@ header .logo img {
 }
 .btnContainer {margin: auto; width: 254px;}
 
-#help > span {
+#statsBar > div > span {
     display: inline-block;
 }
 
@@ -226,7 +225,7 @@ body.detonate {
 /* Balloon.css tooltip */
 
 button[data-balloon] {
-    /* overflow: visible; */
+    overflow: visible;
 }
 [data-balloon] {
     position: relative;
