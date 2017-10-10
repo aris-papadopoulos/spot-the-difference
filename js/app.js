@@ -282,7 +282,7 @@ function detonateLevel() {
         if (dl_is_used == false) {
             dl_is_used = true;
             $('body').addClass('detonate');        
-            
+            $('.icon-bomb').addClass('used');
             setTimeout(function(){ 
                 $('body').removeClass('detonate');
             }, 1500);
@@ -299,16 +299,16 @@ function extraTime() {
         console.log('et_is_used', et_is_used);
         if (et_is_used == false) {
             et_is_used = true;
-        extra_time = "<span id='extra-time'>+30</span>";
-        
-        $('#time-left').append(extra_time);
-        setTimeout(function(){ 
-            $('#extra-time').addClass('zoomOutUp');
-        }, 200);
-        
-        setTimeout(function(){ 
-            $('#extra-time').remove();
-        }, 2400);
+            extra_time = "<span id='extra-time'>+30</span>";
+            $('.icon-hourglass').addClass('used');
+            $('#time-left').append(extra_time);
+            setTimeout(function(){ 
+                $('#extra-time').addClass('zoomOutUp');
+            }, 200);
+            
+            setTimeout(function(){ 
+                $('#extra-time').remove();
+            }, 2400);
         }
         
         else {return;}
@@ -323,6 +323,7 @@ function viewTarget() {
         console.log('vt_is_used', vt_is_used);
         if (vt_is_used == false) {
             vt_is_used = true;
+            $('.icon-target').addClass('used');
             mouseTarget();
         }
         else {return;}

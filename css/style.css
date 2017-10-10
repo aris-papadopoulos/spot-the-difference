@@ -279,6 +279,11 @@ button[data-balloon] {
     transform: translate(-50%,0);
 }
 
+/* Used helpers styling */
+.icon-bomb.used:before, .icon-hourglass.used:before, .icon-target.used:before {
+    opacity: 0.2;
+}
+
 
 /* MEDIA QUERIES */ 
 @media screen and (max-width: 993px) {
