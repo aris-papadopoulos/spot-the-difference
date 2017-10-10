@@ -167,13 +167,29 @@ function startGameBtn () {
 
 function startGame () {
     imageHistory = []; // Reset history of images loaded in previous session
-    score = 0;
-    updateScore();
     
-    renderDiffs();
-    findDiffs();
-    diffCounter();
-    clearResult();
+    /* Game Variables */
+    
+        /* Score related */
+        score = 0;
+        updateScore();
+        /* Helpers related */
+        dl_is_used = false;
+        et_is_used = false;
+        vt_is_used = false;
+    
+    
+    /* Function initiation */
+    
+        /* Spot the difference functionality */
+        renderDiffs();
+        findDiffs();
+        diffCounter();
+        clearResult();
+        /* Helper functions */
+        detonateLevel();
+        extraTime();
+        viewTarget();
         
     newRound();
 }
@@ -260,19 +276,29 @@ function updateScore(ps) {
 }
 
 function detonateLevel() {
+    
     $('.next-icon').on('click', function(){
-        console.log('detonate');
-        $('body').addClass('detonate');        
-        
-        setTimeout(function(){ 
-            $('body').removeClass('detonate');
-        }, 1500);
+        console.log('dl_is_used', dl_is_used);
+        if (dl_is_used == false) {
+            dl_is_used = true;
+            $('body').addClass('detonate');        
+            
+            setTimeout(function(){ 
+                $('body').removeClass('detonate');
+            }, 1500);
+        }
+        else {return;}
+        console.log('dl_is_used', dl_is_used);
     });
+    
 }
 
 function extraTime() {
+    
     $('.extra-time-icon').on('click', function() {
-        console.log('extra-time');
+        console.log('et_is_used', et_is_used);
+        if (et_is_used == false) {
+            et_is_used = true;
         extra_time = "<span id='extra-time'>+30</span>";
         
         $('#time-left').append(extra_time);
@@ -283,16 +309,24 @@ function extraTime() {
         setTimeout(function(){ 
             $('#extra-time').remove();
         }, 2400);
+        }
         
+        else {return;}
+        console.log('et_is_used', et_is_used);
     });
     
 }
 
 function viewTarget() {
-    
+        
     $('.target-icon').on('click', function() {
-        console.log('target');
-        mouseTarget();
+        console.log('vt_is_used', vt_is_used);
+        if (vt_is_used == false) {
+            vt_is_used = true;
+            mouseTarget();
+        }
+        else {return;}
+        console.log('vt_is_used', vt_is_used);
     });
     
 }
@@ -369,9 +403,7 @@ jQuery(document).ready(function () {
         
         startGameBtn();
         
-        detonateLevel();
-        extraTime();
-        viewTarget();
+        
         
         updateScore();
         
