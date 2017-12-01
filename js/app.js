@@ -88,8 +88,8 @@ function clearResult() {
 }
 
 // Countdown timer
-var mins_count=2;
-var secs_count=0;
+var mins_count=0;
+var secs_count=45;
 var count = (mins_count * 60) + secs_count;
 var timeCounter;
 
@@ -299,6 +299,7 @@ function extraTime() {
         console.log('et_is_used', et_is_used);
         if (et_is_used == false) {
             et_is_used = true;
+            count += 30;
             extra_time = "<span id='extra-time'>+30</span>";
             $('.icon-hourglass').addClass('used');
             $('#time-left').append(extra_time);
