@@ -254,10 +254,10 @@ function toggleScore() {
 
 var showOverlay = false;
 
-// function toggleOverlay() {
-    // showOverlay ? $('.overlay').removeClass('hidden') : $('.overlay').addClass('hidden');
-    // showOverlay = !showOverlay;
-// }
+function toggleOverlay() {
+    showOverlay ? $('.overlay').removeClass('hidden') : $('.overlay').addClass('hidden');
+    showOverlay = !showOverlay;
+}
 
 function updateScore(ps) {
     $('#score-count').text(score);
