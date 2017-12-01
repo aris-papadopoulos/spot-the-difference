@@ -185,6 +185,7 @@ header .logo img {
     width: 260px;
     height: 260px;
     position: relative;
+    color: #333;
     background-color: #fff;
     margin: 0 auto;
     top: 50%;
@@ -197,7 +198,7 @@ header .logo img {
 }
 .timespan {color: green;}
 .lifespan {color: red;}
-.scorespan {color:yellow;}
+.scorespan {color:blue;}
 button.next-round {
     width: 100px;
     position: absolute;

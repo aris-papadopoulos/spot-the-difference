@@ -76,7 +76,8 @@ function diffCounter() {
     var diffCount = $('#spot1 .dcount').length;
     console.log('Differences Count: ', diffCount);
     if (diffCount == 0) {
-        $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + lives + ' errors.</p><div class="close">OK</div></div>')
+        endRound();
+        // $('body').append('<div class="gratz"><p>Congratulations!<br>You found all the differences with ' + lives + ' errors.</p><div class="close">OK</div></div>')
     }
 }
 
@@ -220,12 +221,19 @@ function newRound (j) {
     // Countdown timer
     timeCounter=setInterval(timer, 1000); // 1000 will  run it every 1 second - need to be global var
     toggleScore();
-    // toggleOverlay();
+}
+
+function nextRound() {
+    $('.next-round').on('click', function(){
+        console.log('next round clicked');   
+        toggleOverlay();
+        newRound();
+    })
 }
 
 function endRound() {
     toggleScore();
-    // toggleOverlay();
+    toggleOverlay();
     if (roundNumber == gameRounds) {
         endGame();
     }
@@ -234,7 +242,7 @@ function endRound() {
 function endGame() {
     gameInProgress = false;
     toggleScore();
-    // toggleOverlay();
+    toggleOverlay();
 }
 
 function imageWasPlayed (randomImg) {    
@@ -256,7 +264,7 @@ function toggleScore() {
 var showOverlay = false;
 
 function toggleOverlay() {
-    showOverlay ? $('.overlay').removeClass('hidden') : $('.overlay').addClass('hidden');
+    showOverlay ? $('.overlay').addClass('hidden') : $('.overlay').removeClass('hidden');
     showOverlay = !showOverlay;
 }
 
@@ -409,7 +417,7 @@ jQuery(document).ready(function () {
         // clearResult();
         
         startGameBtn();
-        
+        nextRound();
         
         
         updateScore();
