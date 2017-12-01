@@ -34,7 +34,7 @@
   font-size: 24px;
   background: #f9f9f9;
   border-radius: 50%;
-  box-shadow: 1px 1px 10px #555;
+  box-shadow: 1px 1px 10px #aaa;
   transition: opacity 0.5s;
  
   /* For safety - reset parent styles, that can break glyph codes*/

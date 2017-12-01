@@ -182,6 +182,7 @@ function startGame () {
     /* Function initiation */
     
         /* Spot the difference functionality */
+        showStatsBar();
         renderDiffs();
         findDiffs();
         diffCounter();
@@ -257,6 +258,10 @@ var showOverlay = false;
 function toggleOverlay() {
     showOverlay ? $('.overlay').removeClass('hidden') : $('.overlay').addClass('hidden');
     showOverlay = !showOverlay;
+}
+
+function showStatsBar() {
+    $('#statsBar').addClass('gameIsOn');
 }
 
 function updateScore(ps) {

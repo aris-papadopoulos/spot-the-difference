@@ -5,11 +5,12 @@
 body {
     margin: 0px;
     padding: 0px;
-    <!-- background-color: #55a0cb; -->
+    background-color: #151515;
+    color: #fff;
 }
 header .logo img {
     display: block;
-    width: 90%;
+    width: 50%;
     max-width: 1200px;
     margin: 24px auto;
 }
@@ -18,6 +19,11 @@ header .logo img {
     width: 100%;
     height: 46px;
     margin: 20px auto;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+#statsBar.gameIsOn {
+    opacity: 1;
 }
 #statsBar > div {
     width: 20%;
@@ -120,8 +126,8 @@ header .logo img {
     display: inline-block;
     border-radius: 6px;
     color: #CD2626;
-    height: 32px;
-    line-height: 32px;
+    height: 40px;
+    line-height: 40px;
 }
 
 .btn {
@@ -283,16 +289,17 @@ button[data-balloon] {
     transform-origin: top;
 }
 [data-balloon]:before {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjEycHgiPjxwYXRoIGZpbGw9InJnYmEoMTcsIDE3LCAxNywgMC45KSIgdHJhbnNmb3JtPSJyb3RhdGUoMCkiIGQ9Ik0yLjY1OCwwLjAwMCBDLTEzLjYxNSwwLjAwMCA1MC45MzgsMC4wMDAgMzQuNjYyLDAuMDAwIEMyOC42NjIsMC4wMDAgMjMuMDM1LDEyLjAwMiAxOC42NjAsMTIuMDAyIEMxNC4yODUsMTIuMDAyIDguNTk0LDAuMDAwIDIuNjU4LDAuMDAwIFoiLz48L3N2Zz4=);    background-size: 100% auto;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjEycHgiPjxwYXRoIGZpbGw9InJnYmEoMjE3LCAyMTcsIDIxNywgMC45KSIgdHJhbnNmb3JtPSJyb3RhdGUoMCkiIGQ9Ik0yLjY1OCwwLjAwMCBDLTEzLjYxNSwwLjAwMCA1MC45MzgsMC4wMDAgMzQuNjYyLDAuMDAwIEMyOC42NjIsMC4wMDAgMjMuMDM1LDEyLjAwMiAxOC42NjAsMTIuMDAyIEMxNC4yODUsMTIuMDAyIDguNTk0LDAuMDAwIDIuNjU4LDAuMDAwIFoiLz48L3N2Zz4=);    background-size: 100% auto;
+    /* background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNnB4IiBoZWlnaHQ9IjEycHgiPjxwYXRoIGZpbGw9InJnYmEoMTcsIDE3LCAxNywgMC45KSIgdHJhbnNmb3JtPSJyb3RhdGUoMCkiIGQ9Ik0yLjY1OCwwLjAwMCBDLTEzLjYxNSwwLjAwMCA1MC45MzgsMC4wMDAgMzQuNjYyLDAuMDAwIEMyOC42NjIsMC4wMDAgMjMuMDM1LDEyLjAwMiAxOC42NjAsMTIuMDAyIEMxNC4yODUsMTIuMDAyIDguNTk0LDAuMDAwIDIuNjU4LDAuMDAwIFoiLz48L3N2Zz4=);    background-size: 100% auto; */
     height: 6px;
     width: 18px;
     content: "";
     margin-bottom: 5px;
 }
 [data-balloon]:after {
-    background: rgba(17,17,17,.9);
+    background: rgba(217,217,217,.9);
     border-radius: 4px;
-    color: #fff;
+    color: #333;
     content: attr(data-balloon);
     font-size: 12px;
     padding: .5em 1em;
