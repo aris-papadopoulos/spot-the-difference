@@ -92,6 +92,9 @@ function clearResult() {
 var mins_count=0;
 var secs_count=45;
 var count = (mins_count * 60) + secs_count;
+function resetTimer() {
+    count = (mins_count * 60) + secs_count;
+}
 var timeCounter;
 
 function timer() {
@@ -207,6 +210,7 @@ var gameRounds = 5;
 
 function newRound (j) {
     roundNumber++;
+    resetTimer();
     console.log('round ', roundNumber);
     var i = getRandomInt();
     generateCss(i);
@@ -232,6 +236,7 @@ function nextRound() {
 }
 
 function endRound() {
+    clearInterval(timeCounter);
     toggleScore();
     toggleOverlay();
     if (roundNumber == gameRounds) {
