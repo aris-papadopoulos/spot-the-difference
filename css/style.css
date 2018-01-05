@@ -213,8 +213,12 @@ button.next-round {
     font-family: cursive;
     font-size: 16px;
     cursor: pointer;
+    transition: opacity 1s;
+    opacity: 1;
 }
-
+button.next-round.fade {
+    opacity: 0;
+}
 /* Detonate Effect */
 body.detonate {
     position: absolute;

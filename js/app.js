@@ -153,7 +153,7 @@ function renderCSS() {
     document.getElementsByTagName('head')[0].appendChild(style);
 }    // Render the coordinates CSS
 
-var lives = 4;
+var lives = 3;
 var score = 0;
 var gameInProgress = false;
 
@@ -229,7 +229,8 @@ function newRound (j) {
 
 function nextRound() {
     $('.next-round').on('click', function(){
-        console.log('next round clicked');   
+        console.log('next round clicked');
+        $(this).addClass('fade');
         toggleOverlay();
         newRound();
     })
@@ -239,9 +240,27 @@ function endRound() {
     clearInterval(timeCounter);
     toggleScore();
     toggleOverlay();
+    roundStats();
     if (roundNumber == gameRounds) {
         endGame();
     }
+}
+
+function roundStats() {
+    $('.timespan').html(count);
+    $('.lifespan').html(lives);
+    $('.scorespan').html(score);
+    prevScore = score;
+    score += count; // Time left on each round is added on score
+    console.log(prevScore, score);
+    setTimeout(() => {
+        nullTimerScore();
+        updateStatScore(prevScore);
+        setTimeout(() => {
+            $('.next-round').removeClass('fade');            
+        }, 400);
+    }, 1000);
+    
 }
 
 function endGame() {
@@ -283,6 +302,38 @@ function updateScore(ps) {
     $('#score-count').each(function () {
         $(this).prop('Counter',ps).animate({
             Counter: score
+        }, {
+            duration: 500,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+}
+
+function updateStatScore(ps) {
+    $('.scorespan').text(score);
+    
+    $('.scorespan').each(function () {
+        $(this).prop('Counter',ps).animate({
+            Counter: score
+        }, {
+            duration: 500,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+}
+
+function nullTimerScore() {
+    $('.timespan').text(score);
+    
+    $('.timespan').each(function () {
+        $(this).prop('Counter',count).animate({
+            Counter: 0
         }, {
             duration: 500,
             easing: 'swing',
