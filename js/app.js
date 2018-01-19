@@ -28,6 +28,8 @@ function findDiffs() {
             lives--;
             console.log('Lives left: ', lives);
             updateScore(prevScore);
+            updateLives(lives);
+            
         }
         
     });
@@ -177,6 +179,7 @@ function startGame () {
         /* Score related */
         score = 0;
         updateScore();
+        updateLives(lives);
         /* Helpers related */
         dl_is_used = false;
         et_is_used = false;
@@ -310,6 +313,18 @@ function updateScore(ps) {
             }
         });
     });
+}
+function updateLives(i) {
+    if (lives == 0) {
+        endGame();
+    }
+    $('#lives-count').addClass('life-lost');
+    setTimeout(() => {
+        $('#lives-count').removeClass('life-lost');  
+        $('.diffDiv').removeClass('custom-cursor');  
+        }, 1000);
+    $('#lives-count').text(i);
+    
 }
 
 function updateStatScore(ps) {

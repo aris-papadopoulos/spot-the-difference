@@ -199,6 +199,9 @@ header .logo img {
 .timespan {color: green;}
 .lifespan {color: red;}
 .scorespan {color:blue;}
+#lives-count:before {content: 'x'; margin-right: 6px;}
+#lives-count {transition: all 0.5s;}
+#lives-count.life-lost {transform: scale(2);}
 button.next-round {
     width: 100px;
     position: absolute;
