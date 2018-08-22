@@ -166,7 +166,11 @@ function startGameBtn () {
             gameInProgress = true;
         }
         else {
-            console.log('a game is already in progress. do you wish to start a new one?');
+            var newGamePrompt = confirm("A game is already in progress. do you wish to start a new one?");
+            console.log(newGamePrompt);
+            if (newGamePrompt) {
+                alert('Have to fix reset game function first. Sorryyyy');
+            }
         }
     });
 }
@@ -249,15 +253,19 @@ function endRound() {
     }
 }
 
-function roundStats() {
+function roundStats(gameEnd) {
     $('.timespan').html(count);
     $('.lifespan').html(lives);
     $('.scorespan').html(score);
     prevScore = score;
-    score += count; // Time left on each round is added on score
+    if (!gameEnd) {
+        score += count; // Time left on each round is added on score
+    }
     console.log(prevScore, score);
     setTimeout(() => {
-        nullTimerScore();
+        if (!gameEnd) {
+            nullTimerScore();
+        }
         updateStatScore(prevScore);
         setTimeout(() => {
             $('.next-round').removeClass('fade');            
@@ -268,8 +276,10 @@ function roundStats() {
 
 function endGame() {
     gameInProgress = false;
+    clearInterval(timeCounter);
     toggleScore();
     toggleOverlay();
+    roundStats(true);
 }
 
 function imageWasPlayed (randomImg) {    
